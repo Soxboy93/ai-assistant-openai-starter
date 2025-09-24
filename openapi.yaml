@@ -1,0 +1,40 @@
+openapi: 3.0.1
+info:
+  title: AI Assistant API
+  version: '0.1.0'
+paths:
+  /api/assistant:
+    post:
+      summary: Get assistant reply
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                messages:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      role:
+                        type: string
+                        enum: [user, assistant, system]
+                      content:
+                        type: string
+                  description: Array of chat messages
+                assistantConfig:
+                  type: object
+      responses:
+        '200':
+          description: Assistant reply
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reply:
+                    type: string
+        '400':
+          description: Bad request
